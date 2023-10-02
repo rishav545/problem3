@@ -1,0 +1,56 @@
+#include <iostream>
+#include <stack>
+
+// Function to reverse a given stack
+void reverseStack(std::stack<int>& originalStack) {
+    std::stack<int> tempStack;
+
+    // Push all elements from the original stack to the temporary stack
+    while (!originalStack.empty()) {
+        tempStack.push(originalStack.top());
+        originalStack.pop();
+    }
+
+    // Copy the elements back from the temporary stack to the original stack
+    while (!tempStack.empty()) {
+        originalStack.push(tempStack.top());
+        tempStack.pop();
+    }
+}
+
+int main() {
+    std::stack<int> myStack;
+
+    // Push some elements onto the stack
+    myStack.push(1);
+    myStack.push(2);
+    myStack.push(3);
+    myStack.push(4);
+    myStack.push(5);
+
+    std::cout << "Original Stack: ";
+    while (!myStack.empty()) {
+        std::cout << myStack.top() << " ";
+        myStack.pop();
+    }
+
+    // Push elements back onto the stack after reversal
+    myStack.push(1);
+    myStack.push(2);
+    myStack.push(3);
+    myStack.push(4);
+    myStack.push(5);
+
+    // Reverse the stack
+    reverseStack(myStack);
+
+    std::cout << "\nReversed Stack: ";
+    while (!myStack.empty()) {
+        std::cout << myStack.top() << " ";
+        myStack.pop();
+    }
+
+    std::cout << std::endl;
+
+    return 0;
+}
